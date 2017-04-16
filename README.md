@@ -8,15 +8,22 @@ This repo is used to setup software on an OS X laptop for web development.
 
    The script skips over apps already installed.
 
-2. In a Terminal, run the install.sh bootstrap to install the default list of tools and apps defined in Apps/Config:
+2. Edit playbook.yml and add/remove the apps/utils you want. 
 
-   <pre><strong>
-   sh -c "$(curl -fsSL https://raw.githubusercontent.com/wilsonmar/ansible-macos-setup/master/install.sh)"
+   <pre>
+   vi playbook.yml
+   </pre>
+
+   Instead of vi, use another text editor such as atom, code, etc.
+
+3. In a Terminal, run the install.sh bootstrap to install the default list of tools and apps defined in Apps/Config:
+
+   <pre><strong>sh -c "$(curl -fsSL https://raw.githubusercontent.com/wilsonmar/ansible-macos-setup/master/install.sh)"
    </strong></pre>
 
    This was test run on OS X Sierra (~10.10.4).
 
-3. Stop the script (by pressing Ctrl+C) when Ansible asks for the a 'sudo' password. 
+4. Stop the script (by pressing Ctrl+C) when Ansible asks for the a 'sudo' password. 
 
    <pre>
    Changing to laptop repo dir ...
@@ -25,21 +32,15 @@ This repo is used to setup software on an OS X laptop for web development.
    SUDO password:  ^c
    </pre>
 
-4. Change into the cloned repo dir
+5. Change into the cloned repo dir
 
-   cd laptop
-
-5. Edit playbook.yml and add/remove the apps/utils you want. 
-
-   <pre>
-   vi playbook.yml
-   </pre>
+   <pre><strong>cd laptop</strong></pre>
 
 6. Kick off Ansible manually to process based on its playbook.yml file:
 
-   <pre>
-   ansible-playbook playbook.yml -i hosts --ask-sudo-pass -vvvv 
+   <pre><strong>ansible-playbook playbook.yml -i hosts --ask-sudo-pass -vvvv 
    </pre>
+
 
    ### Change configuration
 
@@ -52,6 +53,7 @@ This repo is used to setup software on an OS X laptop for web development.
 8. Add a comment signal <strong>#</strong> (or remove it).
 
    Under <strong>Applications:</strong> are apps installed by Homebrew Cask.
+
 
 ## Applications
 
