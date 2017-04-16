@@ -1,42 +1,22 @@
-# Laptop
+This repo is used to setup software on an OS X laptop for web development.
 
-Laptop is a playbook to set up an OS X laptop (for web development).
+   ### Install
 
-It installs and configures most of the software Siyelo uses on our Macs for web and software development. 
+0. View the <strong>install.sh</strong> file.
 
-It can be run multiple times on the same machine safely. It installs, upgrades, or skips packages based on what is already installed on the machine.
+   It installs xcode and homebrew because Ansible is installed using Homebrew.
 
+   But the script skips over apps already installed.
 
-## Requirements
+1. In a Terminal, use this bootstrap to install the default list of tools and apps defined in Apps/Config:
 
-We've tested it on;
+   <pre><strong>
+   sh -c "$(curl -fsSL https://raw.githubusercontent.com/wilsonmar/ansible-macos-setup/master/install.sh)"
+   </strong></pre>
 
-* OS X Yosemite (~10.10.4)
+   This was test run on OS X Sierra (~10.10.4).
 
-
-## Installation
-
-### Fast Install
-
-If you'd like to start with my default list of tools and apps (see Included Apps/Config below), then simply install with;
-
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/siyelo/laptop/master/install.sh)"
-
-
-You can always customize the install after-the-fact (see below), and re-run the playbook. It will skip over any installed apps.
-
-### Custom Install
-
-If you want to add/remove to the list of apps/utils installed, its pretty straightforward.
-
-As above, download and bootstrap the script. But stop it before it starts ansible, and edit the playbook as desired, before re-running ansible.
-
-1. Grab and start the bootstrap script. Let it install the prereqs and clone the full `siyelo/laptop` repo locally...
-
-      sh -c "$(curl -fsSL https://raw.githubusercontent.com/siyelo/laptop/master/install.sh)"
-
-
-1. Stop the script (Ctrl+C) when ansible asks for the a 'sudo' password. 
+2. Stop the script (by pressing Ctrl+C) when Ansible asks for the a 'sudo' password. 
 
         ```
         Changing to laptop repo dir ...
@@ -46,26 +26,33 @@ As above, download and bootstrap the script. But stop it before it starts ansibl
 
         ```
 
-1. Change into the cloned repo dir
+3. Change into the cloned repo dir
 
         cd laptop
 
-1. Edit playbook.yml and add/remove the apps/utils you want. 
+4. Edit playbook.yml and add/remove the apps/utils you want. 
 
-        vi playbook.yml
+   <pre>
+   vi playbook.yml
+   </pre>
 
-1. Kick off ansible manually
+5. Kick off Ansible manually to process based on its playbook.yml file:
 
-        ansible-playbook playbook.yml -i hosts --ask-sudo-pass -vvvv 
+   <pre>
+   ansible-playbook playbook.yml -i hosts --ask-sudo-pass -vvvv 
+   </pre>
 
-You can do this as many times as you like and re-run the `ansible-playbook` command. Ansible is smart enough to skip installed apps, so subsequent runs are super fast.
+   ### Change configuration
 
+   This can be safely re-run several times after changing the configuration.
+   The script uses Ansible, which is designed to be run several times on the same machine. 
+   It installs, upgrades, or skips packages based on what is already installed on the machine.
 
-## Included Applications / Configuration
+6. Edit the file <strong>playbook.yml</strong> to change what is installed.
 
-### Applications
+7. Add a comment signal <strong>#</strong> (or remove it).
 
-Apps installed with Homebrew Cask:
+   Under <strong>Applications:</strong> are apps installed by Homebrew Cask:
 
   - 1password
   - alfred # | http://www.alfredapp.com 
@@ -110,8 +97,6 @@ Apps installed with Homebrew Cask:
   - vagrant-manager # 
   - virtualbox # | https://www.virtualbox.org/
   - vlc 
-
-There are several more common cask apps listed in the playbook.yml - simply uncomment them to include them in your install. 
 
 
 ### Packages/Utilities 

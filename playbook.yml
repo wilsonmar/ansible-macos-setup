@@ -6,71 +6,71 @@
     applications:
       - 1password
       #- adium 
-      - alfred # | http://www.alfredapp.com 
+      #- alfred # | http://www.alfredapp.com 
       #- anvil # run sites locally 
-      - apptrap # remove associated prefs when uninstalling
-      - appzapper # uninstaller
-      #- atom # sublime without annoying popup | https://atom.io/download/mac 
-      - bettertouchtool # window snapping. (maybe Moom is more lightweight?)
+      #- apptrap # remove associated prefs when uninstalling
+      #- appzapper # uninstaller
+      - atom # sublime without annoying popup | https://atom.io/download/mac 
+      #- bettertouchtool # window snapping. (maybe Moom is more lightweight?)
       #- betterzipql # quick look for zips 
       #- bodega # a less-shit mac store 
       #- caffeine # prevent mac from sleeping 
       #- calibre # berks
-      - carbon-copy-cloner # backups | https://bombich.com/download
-      - cheatsheet # know your shortcuts
+      #- carbon-copy-cloner # backups | https://bombich.com/download
+      #- cheatsheet # know your shortcuts
       #- cord # RDP remote control 
-      - cyberduck # ftp, s3, openstack
-      - dash # totally sick API browser
+      #- cyberduck # ftp, s3, openstack
+      #- dash # totally sick API browser
       #- deeper # (w/ onyx) turn on hidden functions 
       - diffmerge # free visual diq
       - disk-inventory-x # reclaim space on your expensive-ass Apple SSD | http://www.derlien.com/
-      - dropbox # a worse Mega Sync
-      - eve # learn your shortcuts
-      #- evernote 
+      #- dropbox # a worse Mega Sync
+      #- eve # learn your shortcuts
+      - evernote 
       #- fing # network diagnostics
       - firefox 
-      - flux # get more sleep
+      #- flux # get more sleep
       - google-chrome
-      #- google-drive 
+      - google-drive 
       #- handbrake # vid compression 
       - imageoptim # optimize images
-      - istumbler # network discovery GUI
+      #- istumbler # network discovery GUI
       #- iterm2 
       - jumpcut # awesome clipboard
-      - karabiner # Keyboard customization
+      #- karabiner # Keyboard customization
       #- keka # file archiving 
       - licecap # GIFs !
-      - little-snitch # awesome outbound firewall
+      #- little-snitch # awesome outbound firewall
       #- mactracker # benchmarking 
       #- macvim # a shittier vim 
-      - megasync # a better Dropbox  
-      - monolingual # remove unneeded osx lang files
+      #- megasync # a better Dropbox  
+      #- monolingual # remove unneeded osx lang files
       #- namechanger # rename files in bulk 
       #- nosleep # prevent mac from sleeping when closing lid 
-      - nvalt # fast note taking
+      #- nvalt # fast note taking
       #- onyx # system maintenance 
       #- packer # machine images 
       - qlcolorcode # quick look syntax highlighting
       - qlimagesize # quick look image dimensions
       - qlmarkdown # quick look .md files
-      - qlstephen # quick look extension-less text files
+      #- qlstephen # quick look extension-less text files
       #- rcdefaultapp # set default app for different URLs 
-      - rowanj-gitx # Awesome gitx fork.
+      #- rowanj-gitx # Awesome gitx fork.
       #- seil # Keyboard customization 
-      - sequel-pro # FREE SQL GUI!
+      #- sequel-pro # FREE SQL GUI!
       - shortcat # kill your mouse
       - shuttle # ssh management
       #- skitch 
       - skype # 
       - sublime-text3 # (experimental cask) | http://www.sublimetext.com/
       #- subtitles # auto download subtitles 
-      - thunderbird # email
+      #- thunderbird # I use gmail instead
       - tomighty # pomodoro
-      - torbrowser # be the noise
+      #- torbrowser # be the noise
       #- tower # another git client
-      - transmission # torrents
+      #- transmission # torrents
       #- transmit # ftp 
-      - tunnelblick # VPN
+      #- tunnelblick # VPN
       - vagrant # | https://www.vagrantup.com/downloads.html
       - vagrant-manager # 
       - virtualbox # | https://www.virtualbox.org/
@@ -96,7 +96,7 @@
       - bash # Bash 4
       - boot2docker # for running docker on osx
       - brew-cask
-      - cowsay # amazing
+      #- cowsay # amazing
       - coreutils # Install GNU core utilities (those that come with OS X are outdated)
       #- ctags
       - docker # | https://docs.docker.com/installation/mac/
