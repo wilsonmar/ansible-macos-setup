@@ -94,44 +94,46 @@
       - autoconf
       - autojump # quickly navigate from cmd line
       - bash # Bash 4
-      - boot2docker # for running docker on osx
+      #- boot2docker # (oboslete way) for running docker on osx
       - brew-cask
       #- cowsay # amazing
       - coreutils # Install GNU core utilities (those that come with OS X are outdated)
       #- ctags
       - docker # | https://docs.docker.com/installation/mac/
-      #- ffmpeg
+      - ffmpeg  # image processing
       - findutils  # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
       - git
       - go
       - gpg
       #- homebrew/dupes/grep # more recent version of OS X grep # ansible bug: https://github.com/ansible/ansible-modules-extras/issues/252
       - hub # github
-      #- imagemagick # IDK why, but I always end up needing this beast
+      - imagemagick  # to compress image files
       - keybase # in alpha at time of writing.
-      #- mercurial # Used to need it for golang src builds. Who knows, might come in handy again.
-      #- mongodb # a shittier PG 
-      - mtr # better traceroute
-      #- mysql # required PHP library 
+      - mercurial # Used to need it for golang src builds.
+      #- mtr # better traceroute
       - node
       - npm
       - openssl
       - packer
-      # - phantomjs 
-      - postgresql # yes and nosql
+      - phantomjs  # for progress apps
       - python
       - rbenv # ruby. Just installs binaries - assumes you bring in the dotfiles.
-      - readline
-      - redis
-      - rename # rename multiple files
+      #- readline
+      #- rename # rename multiple files
       - rsync
       - ruby-build
-      - sqlite # production rails DB
       - the_silver_searcher # fast ack-grep
-      - tmux
+      #- tmux
       - vim
       - wget
-      - zsh
+      #- zsh  # Z shell
+
+      # Databases:
+      #- sqlite # production rails DB
+      #- mysql # required PHP library 
+      #- mongodb # a shittier PG 
+      # - postgresql # yes and nosql
+      #- redis
 
     zsh_path: /usr/local/bin/zsh
 

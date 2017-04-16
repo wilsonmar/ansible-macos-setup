@@ -1,42 +1,41 @@
 This repo is used to setup software on an OS X laptop for web development.
 
-   ### Install
+### Install
 
-0. View the <strong>install.sh</strong> file.
+1. View the <strong>install.sh</strong> file.
 
    It installs xcode and homebrew because Ansible is installed using Homebrew.
 
    But the script skips over apps already installed.
 
-1. In a Terminal, use this bootstrap to install the default list of tools and apps defined in Apps/Config:
+2. In a Terminal, run the install.sh bootstrap to install the default list of tools and apps defined in Apps/Config:
 
-   <pre><strong>
-   sh -c "$(curl -fsSL https://raw.githubusercontent.com/wilsonmar/ansible-macos-setup/master/install.sh)"
-   </strong></pre>
+   ```
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/wilsonmar/ansible-macos-setup/master/install.sh)"
+   ```
 
    This was test run on OS X Sierra (~10.10.4).
 
-2. Stop the script (by pressing Ctrl+C) when Ansible asks for the a 'sudo' password. 
+3. Stop the script (by pressing Ctrl+C) when Ansible asks for the a 'sudo' password. 
 
-        ```
-        Changing to laptop repo dir ...
+   ```
+Changing to laptop repo dir ...
 
-        Running ansible playbook ...
-        SUDO password:  ^c
+Running ansible playbook ...
+SUDO password:  ^c
+   ```
 
-        ```
+4. Change into the cloned repo dir
 
-3. Change into the cloned repo dir
+   cd laptop
 
-        cd laptop
-
-4. Edit playbook.yml and add/remove the apps/utils you want. 
+5. Edit playbook.yml and add/remove the apps/utils you want. 
 
    <pre>
    vi playbook.yml
    </pre>
 
-5. Kick off Ansible manually to process based on its playbook.yml file:
+6. Kick off Ansible manually to process based on its playbook.yml file:
 
    <pre>
    ansible-playbook playbook.yml -i hosts --ask-sudo-pass -vvvv 
@@ -48,11 +47,15 @@ This repo is used to setup software on an OS X laptop for web development.
    The script uses Ansible, which is designed to be run several times on the same machine. 
    It installs, upgrades, or skips packages based on what is already installed on the machine.
 
-6. Edit the file <strong>playbook.yml</strong> to change what is installed.
+7. Edit the file <strong>playbook.yml</strong> to change what is installed.
 
-7. Add a comment signal <strong>#</strong> (or remove it).
+8. Add a comment signal <strong>#</strong> (or remove it).
 
-   Under <strong>Applications:</strong> are apps installed by Homebrew Cask:
+   Under <strong>Applications:</strong> are apps installed by Homebrew Cask.
+
+## Applications
+
+Descriptions of packages and links to more information about each are listed below:
 
   - 1password
   - alfred # | http://www.alfredapp.com 
@@ -99,21 +102,21 @@ This repo is used to setup software on an OS X laptop for web development.
   - vlc 
 
 
-### Packages/Utilities 
+   ### Packages/Utilities 
  
-Things installed with Homebrew:
+   Apps installed with Homebrew (listed alphabetically):
 
   - autoconf
   - autojump # quickly navigate from cmd line
   - bash # Bash 4
-  - boot2docker # for running docker on osx
+  - boot2docker # obsolete way for running docker on osx
   - brew-cask
   - coreutils # Install GNU core utilities (those that come with OS X are outdated)
   - cowsay # amazing
   - docker # | https://docs.docker.com/installation/mac/
   - findutils  # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
   - git
-  - go
+  - go  # golang
   - gpg
   - hub # github
   - keybase # in alpha at time of writing.
@@ -135,14 +138,15 @@ Things installed with Homebrew:
   - tmux
   - vim
   - wget
-  - zsh
+  - zsh  # Z shell
 
-There are several more utils listed in the playbook.yml - simply uncomment them to include them in your install. 
+   There are several more utils listed in the playbook.yml - simply uncomment them to include them in your install. 
 
 
 ### System Settings
 
-It also installs a few useful system preferences/settings/tweaks with a toned-down verson of Matt Mueller's [OSX-for Hackers script](https://gist.github.com/MatthewMueller/e22d9840f9ea2fee4716). 
+It also installs a few useful system preferences/settings/tweaks with a toned-down verson of Matt Mueller's 
+[OSX-for Hackers script](https://gist.github.com/MatthewMueller/e22d9840f9ea2fee4716). 
 
 It does some reasonably gnarly stuff e.g.
 
