@@ -7,7 +7,7 @@ by running a script that retrieves from this GitHub repository.
 
    The script skips over apps already installed.
 
-2. Edit <a href="#Playbook">playbook.yml (described below</a>)</a> and add/remove the apps/utils you want. 
+2. Edit <a href="#Playbook">playbook.yml (described below</a>)</a> and add/remove the apps/utils you want Ansible to install:
 
    <pre>
    vi playbook.yml
