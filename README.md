@@ -1,7 +1,7 @@
 This repo is used to setup software on a new OS X laptop for web development
 by running a script that retrieves from this GitHub repository.
 
-1. Use an existing Mac to view the <strong>install.sh</strong> file.
+1. On an existing Mac, clone this repo and view the <strong>install.sh</strong> file.
 
    It installs xcode and homebrew because Ansible is installed using Homebrew.
 
