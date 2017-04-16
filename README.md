@@ -10,20 +10,20 @@ This repo is used to setup software on an OS X laptop for web development.
 
 2. In a Terminal, run the install.sh bootstrap to install the default list of tools and apps defined in Apps/Config:
 
-   ```
+   <pre><strong>
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/wilsonmar/ansible-macos-setup/master/install.sh)"
-   ```
+   </strong></pre>
 
    This was test run on OS X Sierra (~10.10.4).
 
 3. Stop the script (by pressing Ctrl+C) when Ansible asks for the a 'sudo' password. 
 
-   ```
+   <pre>
 Changing to laptop repo dir ...
-
+&nbsp;
 Running ansible playbook ...
 SUDO password:  ^c
-   ```
+   </pre>
 
 4. Change into the cloned repo dir
 
