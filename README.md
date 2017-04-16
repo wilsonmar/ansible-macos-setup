@@ -8,7 +8,7 @@ This repo is used to setup software on an OS X laptop for web development.
 
    The script skips over apps already installed.
 
-2. Edit playbook.yml and add/remove the apps/utils you want. 
+2. Edit <a href="#Playbook">playbook.yml (described below</a>)</a> and add/remove the apps/utils you want. 
 
    <pre>
    vi playbook.yml
@@ -39,7 +39,7 @@ This repo is used to setup software on an OS X laptop for web development.
 6. Kick off Ansible manually to process based on its playbook.yml file:
 
    <pre><strong>ansible-playbook playbook.yml -i hosts --ask-sudo-pass -vvvv 
-   </pre>
+   </strong></pre>
 
 
    ### Change configuration
@@ -55,7 +55,9 @@ This repo is used to setup software on an OS X laptop for web development.
    Under <strong>Applications:</strong> are apps installed by Homebrew Cask.
 
 
-## Applications
+<a name="Playbook"></a>
+
+## Playbook.yml applications specified
 
 Descriptions of packages and links to more information about each are listed below:
 
