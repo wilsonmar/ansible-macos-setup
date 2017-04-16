@@ -18,7 +18,11 @@ by running a script that retrieves from this GitHub repository.
 3. CAUTION: Do not run this on a Mac you've already configured (used for a while). 
    Create a virtual memory instance of a Mac to run this.
 
-   In a Terminal of a brand-new Mac (after operating system installation)
+   You shouldn't wipe your entire workstation and start from scratch just to test changes to the playbook. 
+
+   Instead, you can follow theses instructions for [how to build a Mac OS X VirtualBox VM](https://github.com/geerlingguy/mac-osx-virtualbox-vm), on which you can continually run and re-run this playbook to test changes and make sure things work correctly.
+
+4. In a Terminal of a brand-new Mac (after operating system installation)
    run the install.sh bootstrap command to install the default list of tools and apps defined:
 
    <pre><strong>sh -c "$(curl -fsSL https://raw.githubusercontent.com/wilsonmar/ansible-macos-setup/master/install.sh)"
@@ -28,7 +32,7 @@ by running a script that retrieves from this GitHub repository.
 
    This was test run on OS X Sierra (~10.10.4).
 
-4. Stop the script (by pressing Ctrl+C) when Ansible asks for the a 'sudo' password. 
+5. Stop the script (by pressing Ctrl+C) when Ansible asks for the a 'sudo' password. 
 
    <pre>
    Changing to laptop repo dir ...
@@ -37,11 +41,11 @@ by running a script that retrieves from this GitHub repository.
    SUDO password:  ^c
    </pre>
 
-5. Change into the cloned repo dir
+6. Change into the cloned repo dir
 
    <pre><strong>cd laptop</strong></pre>
 
-6. Kick off Ansible manually to process based on its playbook.yml file:
+7. Kick off Ansible manually to process based on its playbook.yml file:
 
    <pre><strong>ansible-playbook playbook.yml -i hosts --ask-sudo-pass -vvvv 
    </strong></pre>
@@ -53,9 +57,9 @@ by running a script that retrieves from this GitHub repository.
    The script uses Ansible, which is designed to be run several times on the same machine. 
    It installs, upgrades, or skips packages based on what is already installed on the machine.
 
-7. Edit the file <strong>playbook.yml</strong> to change what is installed.
+8. Edit the file <strong>playbook.yml</strong> to change what is installed.
 
-8. Add a comment signal <strong>#</strong> (or remove it).
+9. Add a comment signal <strong>#</strong> (or remove it).
 
    Under <strong>Applications:</strong> are apps installed by Homebrew Cask.
 
@@ -65,7 +69,7 @@ by running a script that retrieves from this GitHub repository.
 
 ## Playbook.yml applications specified
 
-Descriptions of packages and links to more information about each are listed below:
+UI Applications installed using Homebrew Cask:
 
   - 1password
   - alfred # | http://www.alfredapp.com 
@@ -112,9 +116,9 @@ Descriptions of packages and links to more information about each are listed bel
   - vlc 
 
 
-   ### Packages/Utilities 
+   ### Packages install by Homebrew
  
-   Apps installed with Homebrew (listed alphabetically):
+   Listed alphabetically:
 
   - autoconf
   - autojump # quickly navigate from cmd line
@@ -192,12 +196,22 @@ These apps only available via the App Store. (sigh)
 
 TODO: Port bork : https://github.com/mattly/bork/blob/master/types/macstore.sh and do this automagically!
 
-  - Monosnap
-  - Pages
-  - Keynote
-  - Numbers
-  - etc
+From Apple:
+   - Pages
+   - Keynote
+   - Numbers
 
+From others:
+   - Microsoft Office (Word, PowerPoint, Excel, etc. 2016)
+   - 1Password
+   - Monosnap
+   - Tweetbot
+   - RadarScope
+   - Pixelmator
+   - Quick Resizer
+   - DaisyDisk
+   - Byword
+   - Aperture
 
 
 ### Application Settings (WIP)
@@ -218,13 +232,6 @@ TODO: Add Mackup task
 - zsh-history-substring-search plugin
 - zsh-notify plugin
 
-
-
-## Development
-
-You shouldn't wipe your entire workstation and start from scratch just to test changes to the playbook. 
-
-Instead, you can follow theses instructions for [how to build a Mac OS X VirtualBox VM](https://github.com/geerlingguy/mac-osx-virtualbox-vm), on which you can continually run and re-run this playbook to test changes and make sure things work correctly.
 
 ### Approach
 
