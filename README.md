@@ -1,8 +1,7 @@
-This repo is used to setup software on an OS X laptop for web development.
+This repo is used to setup software on a new OS X laptop for web development
+by running a script that retrieves from this GitHub repository.
 
-### Install
-
-1. View the <strong>install.sh</strong> file.
+1. Use an existing Mac to view the <strong>install.sh</strong> file.
 
    It installs xcode and homebrew because Ansible is installed using Homebrew.
 
@@ -14,12 +13,18 @@ This repo is used to setup software on an OS X laptop for web development.
    vi playbook.yml
    </pre>
 
-   Instead of vi, use another text editor such as atom, code, etc.
+   Alternately, instead of vi, use another text editor such as atom, code, etc.
 
-3. In a Terminal, run the install.sh bootstrap to install the default list of tools and apps defined in Apps/Config:
+3. CAUTION: Do not run this on a Mac you've already configured (used for a while). 
+   Create a virtual memory instance of a Mac to run this.
+
+   In a Terminal of a brand-new Mac (after operating system installation)
+   run the install.sh bootstrap command to install the default list of tools and apps defined:
 
    <pre><strong>sh -c "$(curl -fsSL https://raw.githubusercontent.com/wilsonmar/ansible-macos-setup/master/install.sh)"
    </strong></pre>
+
+   This runs 
 
    This was test run on OS X Sierra (~10.10.4).
 
@@ -54,6 +59,7 @@ This repo is used to setup software on an OS X laptop for web development.
 
    Under <strong>Applications:</strong> are apps installed by Homebrew Cask.
 
+<hr />
 
 <a name="Playbook"></a>
 
