@@ -321,6 +321,8 @@ brew cask install whatsapp
 #brew install -g opencv
 #brew install -g tesseract
 
+# Install $30 Mac app Waltr (from Softorino) to convert media files and transfer them to iPhones/iPads
+# See https://www.macworld.com/article/2863171/waltr-converts-and-copies-just-about-any-media-file-to-your-iphone-and-ipad.html
 
 brew cask install imageoptim  # shrink image files.
 #brew cask install omnigraffle
@@ -459,9 +461,12 @@ brew install tomcat
 # TODO: List brew and brew cask installed.
 
 fancy_echo "Listing of all brews installed (including dependencies automatically added):"
-brew list
+# brew list
+ls ~/Library/Caches/Homebrew
+
 fancy_echo "Listing of all brew cask installed (including dependencies automatically added):"
-brew cask list
 brew info --all
+
+brew doctor
 
 fancy_echo “DONE”
