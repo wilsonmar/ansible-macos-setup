@@ -416,6 +416,12 @@ brew install -g htop
 #brew install graphicsmagick
 #brew install unrar
 
+brew install tomcat
+   #To have launchd start tomcat now and restart at login:
+   #brew services start tomcat
+   #Or, if you don't want/need a background service you can just run:
+   # catalina run
+
 #brew cask install backblaze
 #brew cask install charles
 #brew cask install flowdock
@@ -456,5 +462,6 @@ fancy_echo "Listing of all brews installed (including dependencies automatically
 brew list
 fancy_echo "Listing of all brew cask installed (including dependencies automatically added):"
 brew cask list
+brew info --all
 
 fancy_echo “DONE”
