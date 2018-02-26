@@ -174,7 +174,7 @@ brew cask install anaconda
    # To use anaconda, add the /usr/local/anaconda3/bin directory to your PATH environment 
    # variable, eg (for bash shell):
   export PATH=/usr/local/anaconda3/bin:"$PATH"
-brew doctor
+#brew doctor fails run here due to /usr/local/anaconda3/bin/curl-config, etc.
 #Cask anaconda installs files under "/usr/local". The presence of such
 #files can cause warnings when running "brew doctor", which is considered
 #to be a bug in Homebrew-Cask.
