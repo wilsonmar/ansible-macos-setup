@@ -50,12 +50,14 @@ function echo_error  { echo -e '\033[1;31mERROR: '"$1"'\033[0m'; }
 # TODO: Check if file is present: ~/.bash_profile
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
-fancy_echo "Brew Doctor ..."
+#fancy_echo "Brew Doctor before starting ..."
 #brew doctor
 
 fancy_echo "Installing Terminal setup:"
 defaults write com.apple.finder AppleShowAllFiles YES
 
+# TODO: Define proxy:
+# See https://www.predix.io/resources/tutorials/tutorial-details.html?tutorial_id=1565
 
 ## For support:
 # See http://macappstore.org/real-vnc/ 
@@ -73,13 +75,10 @@ defaults write com.apple.finder AppleShowAllFiles YES
 
 # brew install -g brew-cask
 
-# brew cask install prey  # to track your device
-
 #fancy_echo "Installing Bash 4 ..."
 #brew install -g bash
    # In order to use this build of bash as your login shell,
    # it must be added to /etc/shells.
-
 
 fancy_echo "Installing basic Linux utilities ..."
 brew cask install iterm2
@@ -149,42 +148,43 @@ fi
 
 if ! command -v npm >/dev/null; then
    brew install -g npm  # node package manager 
-fi
+else
     npm -v # 5.6.0
-
+fi
 npm install --global nodemon -g
-
 npm install --global gulp-cli  #https://www.taniarascia.com/getting-started-with-gulp/
 
 brew install -g grunt-cli
 
-
 brew install -g bower
+
 brew install -g http-server
 #brew install -g express
+# from Walmart Labs
 
 #brew install -g nativescript # https://www.nativescript.org/blog/installing-nativescript-on-windows
 
 #brew install -g python
+   # python -V  # 2.7
 brew install -g python3
 #pip install --upgrade flake8
 
-
 #virtualenv
 brew cask install anaconda
-   # To use anaconda, you may need to add the /usr/local/anaconda3/bin directory to your PATH environment 
+   # To use anaconda, add the /usr/local/anaconda3/bin directory to your PATH environment 
    # variable, eg (for bash shell):
   export PATH=/usr/local/anaconda3/bin:"$PATH"
-
+brew doctor
 #Cask anaconda installs files under "/usr/local". The presence of such
 #files can cause warnings when running "brew doctor", which is considered
 #to be a bug in Homebrew-Cask.
 
-pip3 install jupyter  # https://djangoforbeginners.com/
+# Using Python - # see https://djangoforbeginners.com/
+pip3 install jupyter  
 
-# TODO: Check if exists first:
+# TODO: Ruby comes with MacOS:
 #brew install -g ruby
-
+ruby -v  # ruby 2.5.0p0 (2017-12-25 revision 61468) [x86_64-darwin16]
 
 fancy_echo "Installing Mac Productivity …:"
 brew cask install alfred  # https://www.alfredapp.com/
@@ -210,6 +210,9 @@ brew cask install visual-studio-code
 # https://docs.microsoft.com/en-us/visualstudio/mac/installation
 # brew cask install microsoft-office # Office 2016 installer
 
+brew cask install macvim  # See https://github.com/macvim-dev/macvim 
+   # vimtutor
+
 brew cask install intellij-idea-ce
 
 # brew cask install eclipse  # STS?
@@ -218,6 +221,13 @@ brew cask install intellij-idea-ce
 brew cask install adobe-acrobat-reader
 
 #brew cask install viscosity  # OpenVPN client http://www.sparklabs.com/viscosity/
+
+
+#fancy_echo "Installing hardware location in case of theft:"
+# TODO: Enter API key from the bottom-left corner of the Prey web account Settings page:
+#HOMEBREW_NO_ENV_FILTERING=1 API_KEY="abcdef123456" brew cask install prey
+#brew cask install prey  # to track your mobile devices and laptops
+
 
 #fancy_echo "Installing Mobile dev:"
 #brew install android-sdk
@@ -232,23 +242,21 @@ brew cask install adobe-acrobat-reader
 #   Enter path /usr/local/Cellar/android-sdk/
 
 #fancy_echo "Installing Unity VR dev:"
-#0. Create a Unity ID.
+#1. Create a Unity ID.
 #https://github.com/wooga/homebrew-unityversions
 #0. Download Unity Editor:
 #http://unity3d.com/unity/download/?_ga=2.194647725.1237052200.1507160407-416598928.1507160407
 #Alternately, UnityDownloadAssistant-2017.1.1f1.dmg
-
-#0. To install/upgrade Unity3d on a remote mac OS X machine and you only have shell access:
-
+#2. To install/upgrade Unity3d on a remote mac OS X machine and you only have shell access:
  #  $ alias wget="curl -O -L"
  #  $ wget http://download.unity3d.com/download_unity/unity-3.5.0.dmg
  #  $ hdiutil mount unity-3.5.0.dmg
 
-#0. Script to install:
+#3. Script to install:
    # https://bitbucket.org/WeWantToKnow/unity3d_scripts
 
 
-# wilsonmar.github.io/rdp
+# see https://wilsonmar.github.io/rdp
 # manual download https://rink.hockeyapp.net/apps/5e0c144289a51fca2d3bfa39ce7f2b06/
 
 #https://www.eternalstorms.at/yoink/Yoink_-_Simplify_and_Improve_Drag_and_Drop_on_your_Mac/Yoink_-_Simplify_drag_and_drop_on_your_Mac.html
@@ -346,14 +354,13 @@ Brew cask install camtasia
 # brew of apt-get install docker.io kubeadm kubectl
 
 
-fancy_echo "Installing Jekyll static website tools:"
+#fancy_echo "Installing Jekyll static website tools:"
 #brew install -g grip.  # https://github.com/joeyespo/grip
 # GONE: brew install -g jekyll
 
 
-fancy_echo "Installing MySQL database:"
+#fancy_echo "Installing MySQL database:"
 # NO —client-only /// brew install mysql --client-only
-
 #mongoldb
 #To have launchd start mongodb now and restart at login:
 #  brew services start mongodb
@@ -366,11 +373,17 @@ fancy_echo "Installing MySQL database:"
 #brew cask install mysqlworkbench
 
 
-fancy_echo "Installing cloud development:"
+fancy_echo "Cloud Foundary CLI:"
+brew install cloudfoundry/tap/cf-cli
+    # See https://github.com/cloudfoundry/cli#installing-using-a-package-manager
+
+fancy_echo "Google Cloud SDK: (python 2.7)"
+brew tap caskroom/cask
+brew cask install google-cloud-sdk
+
 #brew install -g azure-cli  # https://docs.microsoft.com/cli/azure/overview
 #brew cask install heroku-toolbelt
 #pip install awscli
-#gcloud
 
 
 # Testing:
@@ -467,6 +480,6 @@ ls ~/Library/Caches/Homebrew
 fancy_echo "Listing of all brew cask installed (including dependencies automatically added):"
 brew info --all
 
-brew doctor
+#brew doctor
 
 fancy_echo “DONE”
