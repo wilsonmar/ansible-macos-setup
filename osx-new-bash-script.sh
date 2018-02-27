@@ -3,17 +3,21 @@
 # File osx-new-bash-script.sh
 # based on https://github.com/sobolevn/dotfiles/blob/master/Brewfile
 # Let me know you're using this - wilsonmar@gmail.com
+
+# After running https://github.com/wilsonmar/ansible-macos-setup
 # To run this, open a Terminal window and manually:
 #   chmod +x osx-new-bash-script.md
+# XCode > Homebrew > git
 
 # TODO:
 # - bring in my_secrets file
 # - create ssh files
 # - create .bash_profile
 
+# brew installs to /usr/local/Cellar/...
+
 fancy_echo() {
   local fmt="$1"; shift
-
   # shellcheck disable=SC2059
   printf "\n>>> $fmt\n" "$@"
 }
@@ -24,10 +28,9 @@ fancy_echo() {
 #fi
 
 fancy_echo "Boostrapping ..."
-
 trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
-
-set -e
+#set -e
+#set -o xtrace  # for debugging this bash shell script.
 
 
 # From https://gist.github.com/somebox/6b00f47451956c1af6b4
@@ -35,9 +38,15 @@ function echo_ok { echo -e '\033[1;32m'"$1"'\033[0m'; }
 function echo_warn { echo -e '\033[1;33m'"$1"'\033[0m'; }
 function echo_error  { echo -e '\033[1;31mERROR: '"$1"'\033[0m'; }
 
-## Bootstrap
-# After running https://github.com/wilsonmar/ansible-macos-setup
-# XCode > Homebrew > git
+
+
+# Ensure Apple's command line tools (such as cc) are installed:
+if ! command -v cc >/dev/null; then
+  fancy_echo "Installing Apple's xcode command line tools ..."
+  xcode-select --install 
+else
+  fancy_echo "Xcode already installed. Skipping."
+fi
 
 
 ## Networking
@@ -84,6 +93,7 @@ fancy_echo "Installing basic Linux utilities ..."
 brew cask install iterm2
 brew install -g wget
 brew install -g tree
+brew install -g htop
 
 # https://github.com/caskroom/homebrew-cask/blob/master/Casks/the-unarchiver.rb
 # brew cask install the-unarchiver  
@@ -108,6 +118,10 @@ brew install -g coreutils
 
 #brew install -g findutils  --with-default-names
 
+# To analyze network traffic and files (from https://www.wireshark.org/)
+#brew install wireshark
+#brew cask install wireshark
+    # password required here.
 
 # fancy_echo "Installing File transfer:"
 #brew cask install filezilla  ## config file too???
@@ -121,6 +135,7 @@ brew install -g coreutils
 # dattodrive free storage
 # brew cask install transmission. # Bittorrant https://transmissionbt.com/
 
+# Compare text files:
 brew cask install p4merge 
 # kdiff3 # https://www.slant.co/options/4399/alternatives/~kdiff3-alternatives
 
@@ -151,12 +166,12 @@ if ! command -v npm >/dev/null; then
 else
     npm -v # 5.6.0
 fi
-npm install --global nodemon -g
-npm install --global gulp-cli  #https://www.taniarascia.com/getting-started-with-gulp/
+#npm install --global nodemon -g
+#npm install --global gulp-cli  #https://www.taniarascia.com/getting-started-with-gulp/
+
+brew install -g bower  # installer for GUI
 
 brew install -g grunt-cli
-
-brew install -g bower
 
 brew install -g http-server
 #brew install -g express
@@ -186,8 +201,8 @@ pip3 install jupyter
 #brew install -g ruby
 ruby -v  # ruby 2.5.0p0 (2017-12-25 revision 61468) [x86_64-darwin16]
 
-fancy_echo "Installing Mac Productivity …:"
-brew cask install alfred  # https://www.alfredapp.com/
+#fancy_echo "Installing Mac Productivity …:"
+#brew cask install alfred  # https://www.alfredapp.com/
   
 # brew install -g the_silver_searcher. # https://github.com/ggreer/the_silver_searcher
 
@@ -206,6 +221,7 @@ brew cask install evernote
 fancy_echo "Installing Text Editors & IDEs:"
 brew cask install sublime-text
 brew cask install atom
+# bbedit
 brew cask install visual-studio-code
 # https://docs.microsoft.com/en-us/visualstudio/mac/installation
 # brew cask install microsoft-office # Office 2016 installer
@@ -215,7 +231,8 @@ brew cask install macvim  # See https://github.com/macvim-dev/macvim
 
 brew cask install intellij-idea-ce
 
-# brew cask install eclipse  # STS?
+brew cask install sts
+# brew cask install eclipse-java  # Not STS
    # android-studio from mobile dev ???
 
 brew cask install adobe-acrobat-reader
@@ -359,6 +376,28 @@ Brew cask install camtasia
 # GONE: brew install -g jekyll
 
 
+fancy_echo "Installing RabbitMQ:"
+brew install rabbitmq
+
+fancy_echo "Installing MongoDB database:"
+brew install mongodb 
+
+# If servers are not in the hosts file, add it:
+if ! grep mongodb "/etc/hosts"; then
+    # Add -q after grep to display string found.
+    fancy_echo "Appending MongoDB to hosts file (password required) ..."
+    sudo -- sh -c "echo 127.0.0.1 mongodb >> /etc/hosts"
+    # sudo -- spawns a new host to do it.
+fi
+if ! grep rabbitmq "/etc/hosts"; then
+    fancy_echo "Appending rabbitmq to hosts file (password required) ..."
+    sudo -- sh -c "echo 127.0.0.1 rabbitmq >> /etc/hosts"
+fi
+    # sudo -- sh -c -e "echo '192.34.0.03   subdomain.domain.com' >> /etc/hosts";
+fancy_echo "Verify resulting contents of /etc/hosts file:"
+cat /etc/hosts   # 
+
+
 #fancy_echo "Installing MySQL database:"
 # NO —client-only /// brew install mysql --client-only
 #mongoldb
@@ -371,6 +410,35 @@ Brew cask install camtasia
 
 #brew cask install mysql-workbench
 #brew cask install mysqlworkbench
+
+
+brew install tomcat
+   #To have launchd start tomcat now and restart at login:
+   #brew services start tomcat
+   #Or, if you don't want/need a background service you can just run:
+   # catalina run
+
+pwd
+
+if [ ! -f "/Applications/Postman.app" ]; then
+    fancy_echo "Downloads Postman for REST API dev ..."
+#    wget -o Postman-osx-latest.zip https://dl.pstmn.io/download/latest/osx ~/Downloads 
+#    unzip -q ~/Downloads/Postman-osx-latest.zip 
+#    mv ~/Downloads/Postman.app /Applications/
+#    pwd
+fi
+
+# Functional Testing:
+#sikulix with opencv and selenium
+#protractor
+#kafka
+
+# Performance testing:
+#brew cask install JProfiler # https://www.ej-technologies.com/download/jprofiler/files
+
+brew install jmeter --with-plugins  # all plugins
+    #open /usr/local/bin/jmeter
+
 
 
 fancy_echo "Cloud Foundary CLI:"
@@ -386,16 +454,6 @@ brew cask install google-cloud-sdk
 #pip install awscli
 
 
-# Testing:
-#brew install jmeter --with-plugins  # all plugins
-#open /usr/local/bin/jmeter
-
-#sikulix with opencv and selenium
-#protractor
-#kafka
-
-
-#brew cask install JProfiler # https://www.ej-technologies.com/download/jprofiler/files
 
 #https://github.com/so-fancy/diff-so-fancy
 
@@ -408,7 +466,6 @@ brew cask install google-cloud-sdk
 #Not only do you waste disk space on tools you never use, you slow down your other work, and can open your #computer up to being hacked:
 
 #brew install -g fish
-brew install -g htop
 #brew install -g calc
 #brew install -g ncdu
 #brew install -g irssi
@@ -430,12 +487,6 @@ brew install -g htop
 #brew install mobile-shell
 #brew install graphicsmagick
 #brew install unrar
-
-brew install tomcat
-   #To have launchd start tomcat now and restart at login:
-   #brew services start tomcat
-   #Or, if you don't want/need a background service you can just run:
-   # catalina run
 
 #brew cask install backblaze
 #brew cask install charles
