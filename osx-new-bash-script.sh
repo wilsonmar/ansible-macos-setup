@@ -535,6 +535,7 @@ fancy_echo "Listing of all brew cask installed (including dependencies automatic
 brew info --all
 
 #brew doctor
-brew cleanup -n
+brew cleanup
+brew cask cleanup
 
 fancy_echo “DONE”
