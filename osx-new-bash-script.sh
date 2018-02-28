@@ -39,7 +39,6 @@ function echo_warn { echo -e '\033[1;33m'"$1"'\033[0m'; }
 function echo_error  { echo -e '\033[1;31mERROR: '"$1"'\033[0m'; }
 
 
-
 # Ensure Apple's command line tools (such as cc) are installed:
 if ! command -v cc >/dev/null; then
   fancy_echo "Installing Apple's xcode command line tools ..."
@@ -62,7 +61,7 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 #fancy_echo "Brew Doctor before starting ..."
 #brew doctor
 
-fancy_echo "Installing Terminal setup:"
+fancy_echo "Configre Terminal to show all files:"
 defaults write com.apple.finder AppleShowAllFiles YES
 
 # TODO: Define proxy:
@@ -75,14 +74,14 @@ defaults write com.apple.finder AppleShowAllFiles YES
 # (no uninstaller)
 
 
-## Battery percentage
-# http://osxdaily.com/2016/12/13/see-battery-life-remaining-macos-sierra/
-
+# brew cask install git
+brew cask install sourcetree
 
 # fancy_echo "Installing Bluetooth ..."
 # 0. Check "Show Bluetooth in menu bar".
 
-# brew install -g brew-cask
+## Battery percentage
+# http://osxdaily.com/2016/12/13/see-battery-life-remaining-macos-sierra/
 
 #fancy_echo "Installing Bash 4 ..."
 #brew install -g bash
@@ -378,9 +377,13 @@ Brew cask install camtasia
 
 fancy_echo "Installing RabbitMQ:"
 brew install rabbitmq
+#MONGO_HOST=  Host where MongoDB is running
+#MONGO_PORT=  Port where MongoDB is listening for requests
 
 fancy_echo "Installing MongoDB database:"
 brew install mongodb 
+# AMQP_HOST= Host where RabbitMQ is running
+# AMQP_PORT= Port where RabbitMQ is listening for requests
 
 # If servers are not in the hosts file, add it:
 if ! grep mongodb "/etc/hosts"; then
