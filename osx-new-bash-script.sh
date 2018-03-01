@@ -7,7 +7,7 @@
 # After running https://github.com/wilsonmar/ansible-macos-setup
 # To run this, open a Terminal window and manually:
 #   chmod +x osx-new-bash-script.md
-# XCode > Homebrew > git
+# XCode > Homebrew > git > ruby, node > npm > apm
 
 # TODO:
 # - bring in my_secrets file
@@ -153,21 +153,6 @@ brew install -g yarn --ignore-dependencies
 # brew install -g carthage # to build  https://github.com/Carthage/Carthageexit 9 
 
 
-if ! command -v node >/dev/null; then
-    fancy_echo "node and npm ..."
-    brew install -g node
-else
-    node -v  #v9.5.0
-fi
-
-if ! command -v npm >/dev/null; then
-   brew install -g npm  # node package manager 
-else
-    npm -v # 5.6.0
-fi
-#npm install --global nodemon -g
-#npm install --global gulp-cli  #https://www.taniarascia.com/getting-started-with-gulp/
-
 brew install -g bower  # installer for GUI
 
 brew install -g grunt-cli
@@ -205,6 +190,25 @@ ruby -v  # ruby 2.5.0p0 (2017-12-25 revision 61468) [x86_64-darwin16]
   
 # brew install -g the_silver_searcher. # https://github.com/ggreer/the_silver_searcher
 
+
+if ! command -v node >/dev/null; then
+    fancy_echo "node and npm ..."
+    brew install -g node
+else
+    node -v  #v9.5.0
+fi
+
+if ! command -v npm >/dev/null; then
+   brew install -g npm  # node package manager 
+else
+    npm -v # 5.6.0
+fi
+#npm install --global nodemon -g
+#npm install --global gulp-cli  #https://www.taniarascia.com/getting-started-with-gulp/
+#npm  # https://gist.github.com/codeinthehole/26b37efa67041e1307db
+
+
+
 ## Notes and secrets:
 # http://mike.kaply.com
 # is a goldmine for configuring Firefox by the author of CCK and CCK2
@@ -220,6 +224,8 @@ brew cask install evernote
 fancy_echo "Installing Text Editors & IDEs:"
 brew cask install sublime-text
 brew cask install atom
+    # apm upgrade -c false  # (atom package manager) https://github.com/atom/apm
+
 # bbedit
 brew cask install visual-studio-code
 # https://docs.microsoft.com/en-us/visualstudio/mac/installation
@@ -273,7 +279,9 @@ brew cask install adobe-acrobat-reader
 
 
 # see https://wilsonmar.github.io/rdp
-# manual download https://rink.hockeyapp.net/apps/5e0c144289a51fca2d3bfa39ce7f2b06/
+# manual download https://rink.hockeyapp.net/apps/5e0c144289a51fca2d3bfa39ce7f2b06/ as of 20 FEB 2018.
+    # MD5: B2A14013DE628BDEEBD6CEA395CE5066 
+
 
 #https://www.eternalstorms.at/yoink/Yoink_-_Simplify_and_Improve_Drag_and_Drop_on_your_Mac/Yoink_-_Simplify_drag_and_drop_on_your_Mac.html
 
@@ -460,7 +468,6 @@ brew cask install google-cloud-sdk
 
 #https://github.com/so-fancy/diff-so-fancy
 
-#npm  # https://gist.github.com/codeinthehole/26b37efa67041e1307db
 
 
 ## Others
@@ -525,7 +532,17 @@ brew cask install google-cloud-sdk
 
 #https://github.com/ferventcoder/chef-chocolatey-presentation
 
-# TODO: List brew and brew cask installed.
+fancy_echo "To manage Mac apps: see https://github.com/mas-cli/mas"
+brew install mas
+    #mas signin --dialog mas@example.com
+    # mas install 808809998 # Apps must already be in the Purchased tab of the App Store.
+    # quip
+    # microsoft office
+    mas list
+
+# Apps are stored in the "/Applications" folder.
+
+############## Wrap-up:
 
 fancy_echo "Listing of all brews installed (including dependencies automatically added):"
 # brew list
