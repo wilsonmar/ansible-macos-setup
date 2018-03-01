@@ -320,9 +320,9 @@ brew cask install skype  # unselect show birthdays
 brew cask install slack
 brew cask install google-hangouts
 brew cask install sococo
-#brew cask install zoom
-#brew cask install teamviewer
+brew cask install zoom
 brew cask install whatsapp
+brew cask install teamviewer
 # GONE? brew cask install Colloquy. ## IRC http://colloquy.info/downloads.html
 #brew cask install hipchat
 #brew cask install joinme
